@@ -1,0 +1,83 @@
+@use "../shared/base" as *;
+
+// Low specificity so the block's layout support (justification) and
+// block-gap settings win over these defaults.
+:where(.tfpg-pagination) {
+	display: flex;
+	font-size: var(--wp--preset--font-size--small, 0.9375rem);
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	margin-top: var(--wp--style--block-gap, 2rem);
+}
+
+.tfpg-pagination {
+
+	.tfpg-visually-hidden {
+
+		@include tfpg-visually-hidden;
+	}
+}
+
+.tfpg-pagination__pages {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.3rem;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.tfpg-pagination__link {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.35rem;
+	min-width: 2.5rem;
+	min-height: 2.5rem;
+	padding: 0 0.85rem;
+	border: 1px solid color-mix(in srgb, currentcolor 20%, transparent);
+	border-radius: $tfpg-pill;
+	color: inherit;
+	font-size: 1em;
+	line-height: 1;
+	text-decoration: none;
+	transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+a.tfpg-pagination__link {
+
+	&:hover {
+		border-color: currentcolor;
+		background: color-mix(in srgb, currentcolor 6%, transparent);
+	}
+
+	&:focus-visible {
+
+		@include tfpg-focus-ring;
+	}
+}
+
+.tfpg-pagination__number {
+	padding: 0 0.5rem;
+}
+
+.tfpg-pagination__link.is-current {
+	border-color: currentcolor;
+	background: color-mix(in srgb, currentcolor 12%, transparent);
+	font-weight: 700;
+}
+
+.tfpg-pagination__link.is-disabled {
+	opacity: 0.4;
+}
+
+.tfpg-pagination__dots,
+.tfpg-pagination__summary {
+	display: inline-flex;
+	align-items: center;
+	min-height: 2.5rem;
+	padding: 0 0.25rem;
+	font-size: 1em;
+}

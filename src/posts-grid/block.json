@@ -1,0 +1,56 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "tfpg/posts-grid",
+	"version": "1.0.0",
+	"title": "Posts Grid",
+	"category": "widgets",
+	"icon": "grid-view",
+	"description": "Displays Grid Posts in a responsive grid. Works together with the Posts Filter block placed anywhere on the same page.",
+	"keywords": [ "posts", "grid", "query", "filter" ],
+	"textdomain": "tfpg-posts-grid-filter",
+	"attributes": {
+		"columns": {
+			"type": "integer",
+			"enum": [ 2, 3, 4 ],
+			"default": 3
+		},
+		"postsPerPage": {
+			"type": "integer",
+			"default": 6
+		}
+	},
+	"providesContext": {
+		"tfpg/postsPerPage": "postsPerPage"
+	},
+	"supports": {
+		"html": false,
+		"align": [ "wide", "full" ],
+		"color": {
+			"background": true,
+			"text": true
+		},
+		"spacing": {
+			"margin": true,
+			"padding": true
+		},
+		"typography": {
+			"fontSize": true
+		},
+		"interactivity": {
+			"interactive": true,
+			"clientNavigation": true
+		}
+	},
+	"example": {
+		"attributes": {
+			"columns": 2,
+			"postsPerPage": 2
+		}
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScriptModule": "file:../store/index.js",
+	"render": "file:./render.php"
+}

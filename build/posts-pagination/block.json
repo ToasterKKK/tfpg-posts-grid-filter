@@ -1,0 +1,72 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "tfpg/posts-pagination",
+  "version": "1.0.0",
+  "title": "Posts Grid Pagination",
+  "category": "widgets",
+  "icon": "ellipsis",
+  "parent": [
+    "tfpg/posts-grid"
+  ],
+  "description": "Pagination for the Posts Grid. Respects the active filters.",
+  "keywords": [
+    "pagination",
+    "pages",
+    "next",
+    "previous"
+  ],
+  "textdomain": "tfpg-posts-grid-filter",
+  "attributes": {
+    "showPageNumbers": {
+      "type": "boolean",
+      "default": true
+    },
+    "previousLabel": {
+      "type": "string",
+      "default": ""
+    },
+    "nextLabel": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "usesContext": [
+    "tfpg/postsPerPage"
+  ],
+  "supports": {
+    "html": false,
+    "inserter": false,
+    "reusable": false,
+    "color": {
+      "background": true,
+      "text": true
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true
+    },
+    "typography": {
+      "fontSize": true
+    },
+    "layout": {
+      "allowSwitching": false,
+      "allowInheriting": false,
+      "allowSizingOnChildren": false,
+      "allowVerticalAlignment": false,
+      "default": {
+        "type": "flex",
+        "justifyContent": "center",
+        "flexWrap": "wrap"
+      }
+    },
+    "interactivity": {
+      "interactive": true,
+      "clientNavigation": true
+    }
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "viewScriptModule": "file:../store/index.js",
+  "render": "file:./render.php"
+}

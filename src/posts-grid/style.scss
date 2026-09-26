@@ -1,0 +1,209 @@
+@use "../shared/base" as *;
+
+// A default size the block's typography setting (a has-*-font-size class)
+// overrides; everything inside is sized in `em` so it scales along.
+.tfpg-posts-grid {
+	--tfpg-gap: var(--wp--style--block-gap, 1.5rem);
+	font-size: var(--wp--preset--font-size--small, 0.9375rem);
+	// Respond to the space the block actually gets (a column, a sidebar…),
+	// not to the viewport.
+	container-type: inline-size;
+	position: relative;
+
+	&:focus {
+		outline: none;
+	}
+
+	&:focus-visible {
+
+		@include tfpg-focus-ring;
+		outline-offset: 6px;
+	}
+
+	.tfpg-visually-hidden {
+
+		@include tfpg-visually-hidden;
+	}
+}
+
+.tfpg-posts-grid__list {
+	display: grid;
+	grid-template-columns: repeat(var(--tfpg-columns, 3), minmax(0, 1fr));
+	gap: var(--tfpg-gap);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	transition: opacity 0.2s ease;
+
+	.is-loading > & {
+		opacity: 0.45;
+		pointer-events: none;
+	}
+}
+
+@container (max-width: 720px) {
+
+	.tfpg-posts-grid--columns-3 .tfpg-posts-grid__list,
+	.tfpg-posts-grid--columns-4 .tfpg-posts-grid__list {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@container (max-width: 480px) {
+
+	.tfpg-posts-grid .tfpg-posts-grid__list {
+		grid-template-columns: minmax(0, 1fr);
+	}
+}
+
+.tfpg-card {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	margin: 0;
+	overflow: hidden;
+	border: 1px solid color-mix(in srgb, currentcolor 12%, transparent);
+	border-radius: $tfpg-radius;
+	background: color-mix(in srgb, currentcolor 3%, transparent);
+	transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+	&:hover,
+	&:focus-within {
+		box-shadow: 0 10px 30px -12px color-mix(in srgb, currentcolor 35%, transparent);
+		transform: translateY(-2px);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		transition: none;
+
+		&:hover,
+		&:focus-within {
+			transform: none;
+		}
+	}
+}
+
+.tfpg-card__media {
+	display: block;
+	overflow: hidden;
+	aspect-ratio: 3 / 2;
+	background: color-mix(in srgb, currentcolor 8%, transparent);
+}
+
+// The ratio is set on the image itself (and the selector carries an extra
+// class) so theme rules such as `img { height: auto }` or the ratio implied
+// by the width/height attributes cannot distort the card.
+.tfpg-card .tfpg-card__image {
+	display: block;
+	width: 100%;
+	max-width: none;
+	height: auto;
+	margin: 0;
+	aspect-ratio: 3 / 2;
+	object-fit: cover;
+	transition: transform 0.4s ease;
+
+	@media (prefers-reduced-motion: reduce) {
+		transition: none;
+	}
+}
+
+.tfpg-card:hover .tfpg-card__image {
+	transform: scale(1.04);
+
+	@media (prefers-reduced-motion: reduce) {
+		transform: none;
+	}
+}
+
+.tfpg-card__body {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	gap: 0.6rem;
+	padding: 1rem 1.15rem 1.2rem;
+}
+
+.tfpg-card__categories {
+	margin: 0;
+	font-size: 0.78em;
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	opacity: 0.7;
+}
+
+.tfpg-card__title {
+	margin: 0;
+	font-size: 1.3em;
+	line-height: 1.3;
+
+	a {
+		color: inherit;
+		text-decoration: none;
+
+		&:hover,
+		&:focus-visible {
+			text-decoration: underline;
+			text-underline-offset: 0.15em;
+		}
+
+		// Make the whole card clickable through the title link.
+		&::after {
+			content: "";
+			position: absolute;
+			inset: 0;
+		}
+	}
+}
+
+.tfpg-card__excerpt {
+	flex: 1;
+	line-height: 1.55;
+	opacity: 0.85;
+
+	p {
+		display: -webkit-box;
+		margin: 0;
+		overflow: hidden;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 4;
+	}
+}
+
+.tfpg-card__tags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.35rem;
+	margin: 0.2rem 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+.tfpg-card__tag {
+	padding: 0.15rem 0.55rem;
+	border-radius: $tfpg-pill;
+	background: color-mix(in srgb, currentcolor 8%, transparent);
+	font-size: 0.78em;
+	line-height: 1.6;
+}
+
+.tfpg-posts-grid__empty {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.75rem;
+	padding: 3rem 1.5rem;
+	border: 1px dashed color-mix(in srgb, currentcolor 30%, transparent);
+	border-radius: $tfpg-radius;
+	text-align: center;
+
+	p {
+		margin: 0;
+	}
+}
+
+.tfpg-posts-grid__clear {
+	color: inherit;
+	font-weight: 600;
+}
