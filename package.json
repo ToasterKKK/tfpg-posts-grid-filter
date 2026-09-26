@@ -1,0 +1,46 @@
+{
+	"name": "tfpg-posts-grid-filter",
+	"version": "1.0.0",
+	"description": "Posts Grid + Posts Filter Gutenberg blocks with automatic demo content seeding.",
+	"author": "Tomer",
+	"license": "GPL-2.0-or-later",
+	"private": true,
+	"files": [
+		"tfpg-posts-grid-filter.php",
+		"uninstall.php",
+		"includes",
+		"assets",
+		"build",
+		"README.md"
+	],
+	"scripts": {
+		"build": "wp-scripts build --experimental-modules --blocks-manifest",
+		"start": "wp-scripts start --experimental-modules --blocks-manifest",
+		"lint:js": "wp-scripts lint-js src tests",
+		"lint:css": "wp-scripts lint-style \"src/**/*.scss\"",
+		"lint:php": "vendor/bin/phpcs",
+		"format": "wp-scripts format src tests",
+		"test:e2e": "node tests/e2e/frontend.js && node tests/e2e/no-js.js && node tests/e2e/late-block.js",
+		"test:e2e:editor": "node tests/e2e/editor.js",
+		"plugin-zip": "wp-scripts plugin-zip"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^36.0.0",
+		"playwright": "^1.63.0"
+	},
+	"dependencies": {
+		"@wordpress/block-editor": "^18.0.0",
+		"@wordpress/blocks": "^16.1.0",
+		"@wordpress/components": "^41.0.0",
+		"@wordpress/core-data": "^8.1.0",
+		"@wordpress/data": "^10.56.0",
+		"@wordpress/element": "^8.8.0",
+		"@wordpress/html-entities": "^4.56.0",
+		"@wordpress/i18n": "^6.29.0",
+		"@wordpress/interactivity": "^6.56.0",
+		"@wordpress/interactivity-router": "^2.56.0"
+	},
+	"engines": {
+		"node": ">=22"
+	}
+}

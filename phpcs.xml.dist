@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<ruleset name="TFPG Posts Grid and Filter">
+	<description>WordPress Coding Standards for the TFPG plugin.</description>
+
+	<file>.</file>
+	<exclude-pattern>/build/*</exclude-pattern>
+	<exclude-pattern>/node_modules/*</exclude-pattern>
+	<exclude-pattern>/vendor/*</exclude-pattern>
+
+	<arg name="extensions" value="php"/>
+	<arg name="colors"/>
+	<arg value="sp"/>
+
+	<config name="minimum_supported_wp_version" value="6.8"/>
+	<config name="testVersion" value="7.4-"/>
+
+	<rule ref="WordPress"/>
+
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="tfpg-posts-grid-filter"/>
+			</property>
+		</properties>
+	</rule>
+
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="tfpg"/>
+				<element value="TFPG"/>
+			</property>
+		</properties>
+	</rule>
+
+	<!-- Block render templates are included inside a function scope by core. -->
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound">
+		<exclude-pattern>/src/*/render.php</exclude-pattern>
+	</rule>
+
+	<!-- PSR-4-style class file names are not used; WP-style class-*.php names are. -->
+	<rule ref="WordPress.Files.FileName">
+		<properties>
+			<property name="is_theme" value="false"/>
+		</properties>
+		<exclude-pattern>/src/*/render.php</exclude-pattern>
+	</rule>
+</ruleset>

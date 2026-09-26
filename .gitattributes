@@ -1,0 +1,8 @@
+* text=auto eol=lf
+*.jpg binary
+*.png binary
+
+# Development files excluded from `git archive` exports.
+/tests export-ignore
+/docs export-ignore
+/.wp-env.json export-ignore

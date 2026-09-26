@@ -1,0 +1,8 @@
+node_modules/
+vendor/
+composer.lock
+tests/e2e/screenshots/
+*.zip
+.DS_Store
+.idea/
+.vscode/
